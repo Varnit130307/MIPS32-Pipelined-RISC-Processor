@@ -26,8 +26,10 @@ module tb_pipe_mips32;
         dut.mem_inst.Mem[2] = 32'h00221800;
         // R4 = R1 + 10     expect R4 = 10 + 10 = 20
         dut.mem_inst.Mem[3] = 32'h2824000A;
-        dut.mem_inst.Mem[4] = 32'h20450064; // R5 = R2 + 100 → expect R5 = 21 + 100 = 121
-        dut.mem_inst.Mem[5] = 32'h00a33000; // R4 = R0 + 10 → expect R4 = 10
+        // R5 = Mem[R2 + 100] → expect R5 = 99
+        dut.mem_inst.Mem[4] = 32'h20450064;
+        // R6 = R5 + R3 → expect R6 = 99 + 31 = 130
+        dut.mem_inst.Mem[5] = 32'h00a33000; 
         // HLT
         dut.mem_inst.Mem[6] = 32'hfc000000;
 
